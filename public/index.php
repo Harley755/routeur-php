@@ -1,5 +1,6 @@
 <?php
 
+use Exceptions\RouteNotFoundException;
 use Router\Router;
 
 
@@ -25,5 +26,8 @@ var_dump($_SERVER['REQUEST_URI']);
 
 echo '<pre/>';
 
-
-echo $router->resolve($_SERVER['REQUEST_URI']);
+try {
+    echo $router->resolve($_SERVER['REQUEST_URI']);
+} catch (RouteNotFoundException $e) {
+    echo $e->getMessage();
+}
